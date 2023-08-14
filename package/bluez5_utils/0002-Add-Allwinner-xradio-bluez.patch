@@ -1,0 +1,84 @@
+From 19c06136933de93de0180f36ab9024fb102b9245 Mon Sep 17 00:00:00 2001
+From: codebug8 <livelwh@outlook.com>
+Date: Fri, 29 Jul 2022 03:11:37 +0000
+Subject: [PATCH] Add Allwinner xradio bluez
+
+---
+ Makefile.in        | 7 ++++++-
+ Makefile.tools     | 3 ++-
+ android/Android.mk | 1 +
+ 3 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index a7e8253..6dbb157 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1519,12 +1519,13 @@ am__tools_hciattach_SOURCES_DIST = tools/hciattach.c tools/hciattach.h \
+ 	tools/hciattach_st.c tools/hciattach_ti.c \
+ 	tools/hciattach_tialt.c tools/hciattach_ath3k.c \
+ 	tools/hciattach_qualcomm.c tools/hciattach_intel.c \
+-	tools/hciattach_bcm43xx.c
++	tools/hciattach_bcm43xx.c  tools/hciattach_xradio.c
+ @DEPRECATED_TRUE@@TOOLS_TRUE@am_tools_hciattach_OBJECTS =  \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_st.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_ti.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_tialt.$(OBJEXT) \
++@DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_xradio.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_ath3k.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_qualcomm.$(OBJEXT) \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@	tools/hciattach_intel.$(OBJEXT) \
+@@ -3747,6 +3748,7 @@ unit_tests = $(am__append_55) unit/test-eir unit/test-uuid \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_st.c \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_ti.c \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_tialt.c \
++@DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_xradio.c \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_ath3k.c \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_qualcomm.c \
+ @DEPRECATED_TRUE@@TOOLS_TRUE@						tools/hciattach_intel.c \
+@@ -6083,6 +6085,8 @@ tools/hciattach_ti.$(OBJEXT): tools/$(am__dirstamp) \
+ 	tools/$(DEPDIR)/$(am__dirstamp)
+ tools/hciattach_tialt.$(OBJEXT): tools/$(am__dirstamp) \
+ 	tools/$(DEPDIR)/$(am__dirstamp)
++tools/hciattach_xradio.$(OBJEXT): tools/$(am__dirstamp) \
++	tools/$(DEPDIR)/$(am__dirstamp)
+ tools/hciattach_ath3k.$(OBJEXT): tools/$(am__dirstamp) \
+ 	tools/$(DEPDIR)/$(am__dirstamp)
+ tools/hciattach_qualcomm.$(OBJEXT): tools/$(am__dirstamp) \
+@@ -7162,6 +7166,7 @@ distclean-compile:
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hciattach_st.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hciattach_ti.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hciattach_tialt.Po@am__quote@ # am--include-marker
++@AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hciattach_xradio.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hciconfig.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hcidump.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@tools/$(DEPDIR)/hcieventmask.Po@am__quote@ # am--include-marker
+diff --git a/Makefile.tools b/Makefile.tools
+index c7bdff8..72b9fbe 100644
+--- a/Makefile.tools
++++ b/Makefile.tools
+@@ -372,7 +372,8 @@ tools_hciattach_SOURCES = tools/hciattach.c tools/hciattach.h \
+ 						tools/hciattach_ath3k.c \
+ 						tools/hciattach_qualcomm.c \
+ 						tools/hciattach_intel.c \
+-						tools/hciattach_bcm43xx.c
++						tools/hciattach_bcm43xx.c \
++						tools/hciattach_xradio.c
+ tools_hciattach_LDADD = lib/libbluetooth-internal.la
+ 
+ tools_hciconfig_SOURCES = tools/hciconfig.c
+diff --git a/android/Android.mk b/android/Android.mk
+index 8f842e7..f58be23 100644
+--- a/android/Android.mk
++++ b/android/Android.mk
+@@ -700,6 +700,7 @@ LOCAL_SRC_FILES := \
+ 	bluez/tools/hciattach_qualcomm.c \
+ 	bluez/tools/hciattach_intel.c \
+ 	bluez/tools/hciattach_bcm43xx.c \
++	bluez/tools/hciattach_xradio.c \
+ 	bluez/lib/bluetooth.c \
+ 	bluez/lib/hci.c \
+ 
+-- 
+2.17.1
+

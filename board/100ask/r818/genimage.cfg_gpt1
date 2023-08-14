@@ -1,0 +1,49 @@
+image r818-gpt_sdcard.img {
+	hdimage{
+		partition-table-type = "gpt"
+		gpt-location = 1M
+	}
+	partition boot0 {
+		in-partition-table = "no"
+		image = "boot0_sdcard.fex"
+		offset = 8K
+		size = 1016K
+		
+	}
+
+	partition boot-packages {
+		in-partition-table = "no"
+		image = "boot_package.fex"
+		size = 2M
+		offset = 16400K
+	}
+
+	partition boot-resource {
+                partition-type-uuid = "F"
+                image = "boot-resource.fex"
+        }
+
+        partition env {
+                partition-type-uuid = "F"
+                image = "env.fex"
+                size = 128k
+        }
+
+        partition boot {
+                partition-type-uuid = "F"
+                bootable = "true"
+                image = "boot.vfat"
+        }
+}
+
+image boot.vfat {
+        vfat {
+                files = {
+                        "boot.img",
+                        "board.dtb",
+
+                }
+        }
+        size = 32M
+}
+
