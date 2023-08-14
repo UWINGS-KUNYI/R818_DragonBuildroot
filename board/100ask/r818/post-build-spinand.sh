@@ -26,7 +26,7 @@ cd $BINARIES_DIR
 # mkenvimage -r -p 0x00 -s 0x20000 -o env.fex env-spinand.cfg
 
 #build uboot optee files.
-$BINARIES_DIR/dragonsecboot  -pack boot_package.cfg
+#$BINARIES_DIR/dragonsecboot  -pack boot_package.cfg
 
 #buildroot kernel boot images.
 mkbootimg --kernel  Image --ramdisk  ramdisk.img --board  r818-sc3917 --base  0x40000000 --kernel_offset  0x80000 --ramdisk_offset  0x02000000 -o  boot.img
