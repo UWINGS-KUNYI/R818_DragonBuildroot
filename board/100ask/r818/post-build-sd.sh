@@ -23,6 +23,9 @@ cp $BOARD_DIR/../tina-pack-tools/* -rfvd  $BINARIES_DIR
 #cd buildroot/output/images/
 cd $BINARIES_DIR
 
+
+cp $BINARIES_DIR/sunxi/board.dtb $BINARIES_DIR
+
 #build env.fex bootargs.
 mkenvimage -r -p 0x00 -s 0x20000 -o env.fex env-sd.cfg
 
